@@ -17,7 +17,7 @@
           :state="getValidation('businessName')"
           >
         ></b-form-input>
-        <b-form-text>CNPJ</b-form-text>
+        <b-form-text>CNPJ <small>15 dígitos numéricos</small></b-form-text>
         <b-form-input 
           class="mb-3"
           id="cnpj" 
@@ -41,6 +41,18 @@
           >
         ></b-form-input>
         
+        <b-form-text>Ramo</b-form-text>
+        <b-form-input 
+          class="mb-3"
+          id="businessLine" 
+          type="text"
+          placeholder="Ramo"
+          required
+          autocomplete="off"
+          v-model.trim="$v.form.businessLine.$model"
+          :state="getValidation('businessLine')"
+          >
+        ></b-form-input>        
         <b-button
           class="col-12" 
           type="submit" 
@@ -70,7 +82,8 @@ export default {
       form: {
         businessName: "",
         cnpj: "",
-        address: ""
+        address: "",
+        businessLine: ""
       }
     }
   },
@@ -93,6 +106,10 @@ export default {
       address: {
         required,
         minLength: minLength(5),
+      },
+      businessLine: {
+        required,
+        minLength: minLength(3),
       }
     },
   },
@@ -119,7 +136,8 @@ export default {
       var body = {
         businessName: this.form.businessName,
         cnpj: this.form.cnpj,
-        address: this.form.address
+        address: this.form.address,
+        businessLine: this.form.businessLine
       }
         
       axios
@@ -143,7 +161,8 @@ export default {
     isDisabled: function(){
       if(this.$v.form.businessName.$model.length < 3 || 
       this.$v.form.address.$model.length < 5 ||
-      this.$v.form.cnpj.$model.toString().length !== 14
+      this.$v.form.cnpj.$model.toString().length !== 14 ||
+      this.$v.form.businessLine.$model.length < 3 
       ) {
         return true
       } else {

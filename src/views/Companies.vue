@@ -16,6 +16,9 @@
               <div class="d-flex justify-content-between">
                 <b-list-group-item  class="col-12"><strong>Endereço</strong> {{company.address}}</b-list-group-item>
               </div>
+              <div class="d-flex flex-row justify-content-between">
+                <b-list-group-item class="col-12"><strong>Ramo:</strong> {{ company.businessLine }}</b-list-group-item>
+              </div>          
             </b-list-group>
             <div class="col-menu">
               
@@ -152,37 +155,6 @@ export default {
       });  
     },
 
-    async updateStatus(id) {
-
-      let user= JSON.parse(localStorage.getItem("authUser")).username
-      let config = {
-        headers: {
-          username: user,
-        }
-      }
-
-      axios
-      .patch(`http://localhost:3000/api/company/${id}/done`, config)
-      .then( async function (response) {
-        console.log(response.data)
-          if(response.data.message == 'Empresa marcado como concluído.'){
-            this.companies = await this.getCompanies();
-            this.hideModal();
-          } else {
-            this.showToast("danger", "Erro!", "Não foi possível atualizar o empresa");
-            this.hideModal();
-          }
-        }.bind(this)
-      )
-      .catch(async function (error) {
-        this.showToast("danger", "Erro!", "Não foi possível deletar o empresa");
-        this.companies = await this.getCompanies();
-        this.hideModal();
-      });  
-
-      this.companies = await this.getCompanies();
-      this.showToast("success", "Sucesso!", "Status da tarefa atualizado com suceso");
-    },
     async getCompanies() {
       this.isLoading = true;
       let self = this;

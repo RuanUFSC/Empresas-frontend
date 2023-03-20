@@ -7,10 +7,13 @@
 
     <b-collapse id="nav-collapse" class="d-flex flex-row justify-content-left" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/companies">Minhas empresas</b-nav-item>
+        <b-nav-item to="/companies">Empresas</b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav>
-        <b-nav-item to="/register">Criar empresa</b-nav-item>
+        <b-nav-item to="/register">Cadastro</b-nav-item>
+      </b-navbar-nav>
+      <b-navbar-nav>
+        <b-nav-item to="/dashboard">Dashboard</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>  

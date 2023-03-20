@@ -33,7 +33,17 @@
           v-model.trim="$v.form.address.$model"
           :state="getValidation('address')"
         ></b-form-input>
-      </b-form-group>   
+      </b-form-group>         
+      <b-form-group label="Ramo" label-for="businessLine">      
+        <b-form-input
+          id="businessLine"
+          type="text"
+          required
+          autocomplete="off"
+          v-model.trim="$v.form.businessLine.$model"
+          :state="getValidation('businessLine')"
+        ></b-form-input>
+      </b-form-group>  
       <b-form-group>
       <b-button type="submit" :disabled='isDisabled'
       class="col-12" variant="outline-primary" @click="saveCompany">
@@ -57,7 +67,8 @@ export default {
       form: {
         businessName: "",
         address: "",  
-        cnpj: ""   
+        cnpj: "",
+        businessLine: ""
       },
     };
   },
@@ -66,7 +77,7 @@ export default {
     form: {
       businessName: {
         required,
-        minLength: minLength(3),
+        minLength: minLength(3)
       },
       cnpj: {
         required,
@@ -77,6 +88,10 @@ export default {
       address: {
         required,
         minLength: minLength(5),
+      },
+      businessLine: {
+        required,
+        minLength: minLength(3)
       }
     },
   },
@@ -86,9 +101,9 @@ export default {
       this.form = {
         businessName: this.$route.params.companyId.businessName,
         cnpj: this.$route.params.companyId.cnpj,
-        address: this.$route.params.companyId.address
+        address: this.$route.params.companyId.address,
+        businessLine: this.$route.params.companyId.businessLine
       }
-      console.log(this.form)
     } else{
         this.$router.push({ name: "companies" })
     }
@@ -102,13 +117,16 @@ export default {
         var body = {
           businessName: this.form.businessName,
           cnpj: this.form.cnpj,
-          address: this.form.address
+          address: this.form.address,
+          businessLine: this.form.businessLine
         }
 
         axios
         .put(`http://localhost:3000/api/company/${this.$route.params.companyId.id}`, body)
         .then(function (response) {
+          console.log('response.data')
           console.log(response.data)
+          console.log('response.data')
             if(response.data.message == 'Empresa atualizada com sucesso.'){
               this.showToast("success", "Sucesso!", "Informações da empresa atualizadas com suceso");
               this.$router.push({ name: "companies" })
@@ -127,7 +145,8 @@ export default {
     isDisabled: function(){
       if(this.$v.form.businessName.$model.length < 3 || 
       this.$v.form.address.$model.length < 5 ||
-      this.$v.form.cnpj.$model.toString().length !== 14
+      this.$v.form.cnpj.$model.toString().length !== 14 ||
+      this.$v.form.businessLine.$model.length < 3 
       ) {
         return true
       } else {
