@@ -60,7 +60,7 @@
   </template>
     <b-modal ref="modalRemove" hide-footer title="Exclusão de empresa">
       <div class="d-block text-center">
-        Deseja realmente excluir esse empresa? <!-- {{ companySelected.title }} -->
+        Deseja realmente excluir essa empresa? <!-- {{ companySelected.title }} -->
       </div>
       <div class="mt-3 d-flex justify-content-end">
         <b-button variant="outline-secondary" class="mr-2" @click="hideModal">

@@ -1,61 +1,71 @@
 
 <template>
-  <div class="container mt-2 p-3">
+  <div class="container mt-2 p-3 d-flex flex-row justify-content-between">
     
-    <b-card-group class="col-8 mt-2">
-        <b-card class="d-flex mb-2">
-         Quantidade de empresas: {{ companies.length }}
-        </b-card>
-    </b-card-group>
-    <b-card-group class="col-8 mt-2">
-        <b-card class="d-flex mb-2">
-         Quantidade de Ramos: {{ lines.length }}
-        </b-card>
-    </b-card-group>
-    <b-card-group deck v-for="line in lines" :key="line" class="col-8 mt-2">
-        <b-card class="d-flex mb-2">
-          <div class="container-companies">
-            <b-list-group flush class="col-company col-10">
-              <div class="d-flex flex-row justify-content-between">
-                <b-list-group-item class="col-12"><strong>Ramo:</strong> {{ line }}</b-list-group-item>
-              </div>              
-              <div class="d-flex justify-content-between">
-                <b-list-group-item class="col-12"><strong>Quantidade de empresas:</strong> {{  companies.filter(company => company.businessLine == line).length }}</b-list-group-item>
-              </div>        
-            </b-list-group>
-           </div>
-        </b-card>
-    </b-card-group>
+    <div class="col-6 mt-2 card-body text-center">
+        <div class="d-flex mb-2">
+          <span class="h5 m-auto">Quantidade de empresas: {{ companies.length }}</span>
+        </div>
+        <table class="table" >
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Razão Social</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Ramo</th>
+              <th scope="col">Endereço</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="company in companies" :key="company.id">
+              <td>{{ company.businessName }}</td>
+              <td>{{ company.cnpj }}</td>
+              <td>{{ company.businessLine }}</td>
+              <td>{{ company.address }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
 
-    <h1>Empresas</h1>
-    <b-card-group deck v-for="company in companies" :key="company.id" class="col-8 mt-2">
-        <b-card class="d-flex mb-2" v-if="company.businessName">
-          <div class="container-companies">
-            <b-list-group flush class="col-company col-10">
-              <div class="d-flex flex-row justify-content-between">
-                <b-list-group-item class="col-12"><strong>Razão Social:</strong> {{ company.businessName }}</b-list-group-item>
-              </div>              
-              <div class="d-flex justify-content-between">
-                <b-list-group-item class="col-12"><strong>CNPJ:</strong> {{  company.cnpj }}</b-list-group-item>
+    <div class="col-6 mt-2 card-body text-center">
+        <div class="d-flex mb-2">
+          <span class="h5 m-auto">Quantidade de Ramos: {{ lines.length }}</span>
+        </div>
+      
+
+        <table class="table" >
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Ramo</th>
+              <th scope="col">Quantidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="line in lines" :key="line">
+              <td>{{line}}</td>
+              <td>{{  companies.filter(company => company.businessLine == line).length }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <!-- <b-card-group deck v-for="line in lines" :key="line" class="col-8 mt-2">
+            <b-card class="d-flex mb-2">
+              <div class="container-companies">
+                <b-list-group flush class="col-company col-10">
+                  <div class="d-flex flex-row justify-content-between">
+                    <b-list-group-item class="col-12"><strong>Ramo:</strong> {{ line }}</b-list-group-item>
+                  </div>              
+                  <div class="d-flex justify-content-between">
+                    <b-list-group-item class="col-12"><strong>Quantidade de empresas:</strong> {{  companies.filter(company => company.businessLine == line).length }}</b-list-group-item>
+                  </div>        
+                </b-list-group>
               </div>
-              <div class="d-flex justify-content-between">
-                <b-list-group-item  class="col-12"><strong>Endereço</strong> {{company.address}}</b-list-group-item>
-              </div>
-              <div class="d-flex flex-row justify-content-between">
-                <b-list-group-item class="col-12"><strong>Ramo:</strong> {{ company.businessLine }}</b-list-group-item>
-              </div>          
-            </b-list-group>
-           </div>
-        </b-card>
-    </b-card-group>
+            </b-card>
+        </b-card-group>   -->
+    </div>
   </div>
 </template>
 <style>
-
-.container {
-  display: grid;
-  justify-items: center;
-}
 
 .container-companies {
   display: flex;
