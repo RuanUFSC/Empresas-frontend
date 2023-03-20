@@ -4,28 +4,19 @@
     <h1>Editar empresa</h1>
     <hr>
     <h5>Personalize os dados abaixo</h5>
-      <b-form-group label="Titulo" label-for="title">
+      <b-form-group label="Razão Social" label-for="businessName">
         <b-form-input
-          id="title"
+          id="businessName"
           type="text"
           required
           autocomplete="off"
           v-model.trim="$v.form.businessName.$model"
           :state="getValidation('businessName')"
         ></b-form-input>
-      </b-form-group>      
-        <b-form-input
-          id="title"
-          type="text"
-          required
-          autocomplete="off"
-          v-model.trim="$v.form.address.$model"
-          :state="getValidation('address')"
-        ></b-form-input>
       </b-form-group>   
-      <b-form-group label="CEP" label-for="zipcode">
+      <b-form-group label="CNPJ" label-for="cnpj">
         <b-form-input
-          id="zipcode"
+          id="cnpj"
           v-model.trim="$v.form.cnpj.$model"
           type="text"
           required
@@ -33,6 +24,16 @@
           :state="getValidation('cnpj')"
         ></b-form-input>
       </b-form-group>
+      <b-form-group label="Endereço" label-for="address">      
+        <b-form-input
+          id="address"
+          type="text"
+          required
+          autocomplete="off"
+          v-model.trim="$v.form.address.$model"
+          :state="getValidation('address')"
+        ></b-form-input>
+      </b-form-group>   
       <b-form-group>
       <b-button type="submit" :disabled='isDisabled'
       class="col-12" variant="outline-primary" @click="saveCompany">

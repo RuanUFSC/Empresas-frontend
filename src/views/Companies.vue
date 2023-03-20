@@ -11,10 +11,10 @@
                 <b-list-group-item class="col-12"><strong>Razão Social:</strong> {{ company.businessName }}</b-list-group-item>
               </div>              
               <div class="d-flex justify-content-between">
-                <b-list-group-item class="col-12"><strong>cnpj:</strong> {{  company.cnpj }}</b-list-group-item>
+                <b-list-group-item class="col-12"><strong>CNPJ:</strong> {{  company.cnpj }}</b-list-group-item>
               </div>
               <div class="d-flex justify-content-between">
-                <b-list-group-item  class="col-12"><strong>address</strong> {{company.address}}</b-list-group-item>
+                <b-list-group-item  class="col-12"><strong>Endereço</strong> {{company.address}}</b-list-group-item>
               </div>
             </b-list-group>
             <div class="col-menu">

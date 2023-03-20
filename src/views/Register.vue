@@ -22,7 +22,7 @@
           class="mb-3"
           id="cnpj" 
           type="text"
-          placeholder="Informe o CEP de realização"
+          placeholder="Informe o CNPJ da empresa"
           required
           autocomplete="off"
           v-model.trim="$v.form.cnpj.$model"
